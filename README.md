@@ -1,75 +1,61 @@
-# React + TypeScript + Vite
+# Personal Finance App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive, modern personal finance dashboard built with React, Vite, TypeScript, and Tailwind CSS. This application allows users to track their finances, manage budgets, keep tabs on recurring bills, and set aside money into saving "pots" without needing a backend server—all data is persisted locally in the browser using `localStorage`.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Authentication System:** Simple signup and login flow.
+- **Overview Dashboard:** A high-level view of your finances, including total balances, income, expenses, and quick summaries of pots, budgets, and bills.
+- **Transactions Management:** View, search, filter, and sort past transactions. Add new transactions (income or expense) that dynamically update your overall balances.
+- **Budgets:** Set spending limits for different categories (e.g., Entertainment, Groceries). Visualise spending progress via an interactive Recharts Pie chart.
+- **Pots (Savings Goals):** Create savings goals. Add and withdraw money from these pots to track savings separately from your main balance.
+- **Recurring Bills:** Keep track of monthly recurring bills, view paid/upcoming statuses, and sort by date or amount.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Framework**: [Vite](https://vitejs.dev/) + [React](https://react.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (using utility classes and custom color tokens)
+- **Routing**: `react-router`
+- **Charts**: [Recharts](https://recharts.org/)
+- **State Management**: React Hooks + LocalStorage (`src/utils/financeStorage.ts`)
 
-Note: This will impact Vite dev & build performances.
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+You will need [Bun](https://bun.sh/) installed on your system (or npm/yarn/pnpm).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd personal-finance
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. Install dependencies:
+   ```bash
+   bun install
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Start the development server:
+   ```bash
+   bun run dev
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4. Build for production:
+   ```bash
+   bun run build
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Architecture & Design Rules
+
+- **Strict TypeScript:** No `any` types. Interfaces and explicit return types are enforced.
+- **Mobile-First Design:** The application is built to be fully responsive, scaling gracefully from mobile phones to large desktop screens using Tailwind's `lg:` prefixes.
+- **Component-Driven:** UI elements are cleanly separated. `App.tsx` handles pure routing, while logic lives inside specific page and layout components (`src/components/`).
+- **Custom Theming:** Utilizes a strict set of design tokens (e.g. `--color-grey-900`, `--color-beige-500`) defined via Tailwind `@theme` in `index.css`.
+
+## License
+
+This project is licensed under the MIT License.
