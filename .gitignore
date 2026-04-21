@@ -24,5 +24,6 @@ dist-ssr
 *.sw?
 
 .agents
+skills-lock.json
 
 .env*
